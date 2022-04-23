@@ -38,7 +38,7 @@ public class ConsumerDemo {
                         " partition:" + it.partition() +
                         " offset:" + it.offset() +
                         "\n" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(it.timestamp()));
-                System.out.println("content: " + it.value());
+                System.out.println("key: " + it.key() + ", content: " + it.value());
             });
             System.out.println("assignment=" + consumer.assignment()); // 获取元数据需要3.5s左右
             if (System.currentTimeMillis() > start + 100000 ) {

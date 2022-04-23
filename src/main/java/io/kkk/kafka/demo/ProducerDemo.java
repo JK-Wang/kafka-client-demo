@@ -54,7 +54,7 @@ public class ProducerDemo {
         long num = 0;
         long start = System.currentTimeMillis();
         while (true) {
-            ProducerRecord<Object, String> record = new ProducerRecord<>(topic, "kafka lag test");
+            ProducerRecord<Object, String> record = new ProducerRecord<>(topic, "kafka lag test " + num);
             producer.send(record);
             producer.flush();
             num++;
@@ -72,10 +72,10 @@ public class ProducerDemo {
 
 
     public static void main(String[] args) {
-        String topic = "topic_in";
+        String topic = "topic001";
 
         Properties properties = new Properties();
-        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "stream371:9092");
+        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         properties.put(ProducerConfig.CLIENT_ID_CONFIG, "producer_demo");
         properties.put(ProducerConfig.ACKS_CONFIG, "all");
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, BytesSerializer.class);
@@ -93,6 +93,6 @@ public class ProducerDemo {
 
         ProducerDemo producer = new ProducerDemo(topic, properties);
 //        producer.send(10, true);
-        producer.send(100);
+        producer.send(1000);
     }
 }
